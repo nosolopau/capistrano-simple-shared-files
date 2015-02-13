@@ -15,7 +15,7 @@ gem 'capistrano-simple-shared-files'
 Or install it to your system:
 
 ```
-$ gem install apistrano-simple-shared-files
+$ gem install capistrano-simple-shared-files
 ```
 
 ## Usage
