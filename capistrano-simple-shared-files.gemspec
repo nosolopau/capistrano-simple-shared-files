@@ -2,14 +2,14 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 Gem::Specification.new do |s|
-  s.name          = 'capistrano-linked-files'
+  s.name          = 'capistrano-simple-shared-files'
   s.version       = '0.1.0'
-  s.summary       = 'Upload linked files and directories.'
-  s.description   = 'Adds tasks to upload your linked files and directories. '
+  s.summary       = 'Upload files and directories to shared directory.'
+  s.description   = 'Adds tasks to upload files and directories to shared directory.'
 
-  s.authors       = ['Runar Skaare Tveiten']
-  s.email         = ['runar@tveiten.io']
-  s.homepage      = 'https://github.com/runar/capistrano-linked-files'
+  s.authors       = ['Pablo Torrecilla']
+  s.email         = ['pau@nosolopau.com']
+  s.homepage      = 'https://github.com/nosolopau/capistrano-simple-shared-files'
   s.license       = 'MIT'
 
   s.files         = `git ls-files`.split($/)

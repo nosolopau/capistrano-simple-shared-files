@@ -1,23 +1,21 @@
-# capistrano-linked-files
+# capistrano-simple-shared-files
 
-This gem provides Capistrano reciepes to upload your linked files and directories. It's quite useful for files such as `config/database.yml` and `config/secrets.yml`, which are usually ignored (at least they should be) from version control systems.
+This gem provides Capistrano recipes to upload your linked files and directories. Linked files and directories are placed in the `shared` directory on your remote servers and kept between deployments. After a new deployment, a symlink is created from the `shared` directory to the `current` directory.
 
-Linked files and directories are placed in the `shared` directory on your remote servers and kept between deployments. After a new deployment, a symlink is created from the `shared` directory to the `current` directory.
-
-Inspiration was found in damselem's [capistrano-shared-files](https://github.com/damselem/capistrano-shared-file), but capistrano-linked-files uses the "built in" Capistrano configuration variables `linked_files` and `linked_dirs` instead of custom ones. This way it's not necessary to specify your linked files twice.
+This is an adaptation from runar's [capistrano-linked-files](https://github.com/runar/capistrano-linked-files) which is inspired in damselem's [capistrano-shared-files](https://github.com/damselem/capistrano-shared-file). This gem applies the philosophy of the second one with the simpler, easier code of the first.
 
 ## Installation
 
 Add the gem to your `Gemfile`:
 
 ```ruby
-gem 'capistrano-linked-files'
+gem 'capistrano-simple-shared-files'
 ```
 
 Or install it to your system:
 
 ```
-$ gem install capistrano-linked-files
+$ gem install apistrano-simple-shared-files
 ```
 
 ## Usage
@@ -25,26 +23,26 @@ $ gem install capistrano-linked-files
 Add the gem to your `Capfile`:
 
 ```ruby
-require 'capistrano/linked_files'
+require 'capistrano/simple_shared_files'
 ```
 
 In `deploy.rb`, list the files and directories you'd like to keep between deployments:
 
 ```ruby
-set :linked_files, %w(config/database.yml config/secrets.yml)
-set :linked_dirs, %w(bin log tmp)
+set :shared_files, %w(config/database.yml config/secrets.yml)
+set :shared_dirs, %w(bin tmp)
 ```
 
 Then run the task:
 
 ```
-$ bundle exec cap <STAGE> linked_files:upload
+$ bundle exec cap <stage> simple_shared_files:upload
 ```
 
-To automatically upload linked files and directories after a new deployment, add the following to your `deploy.rb`:
+To automatically upload linked files and directories before a new deployment, add the following to your `deploy.rb`:
 
 ```ruby
-before :finishing, 'linked_files:upload'
+before 'deploy:starting', 'simple_shared_files:upload'
 ```
 
 ## Contributing
